@@ -1,3 +1,5 @@
+// Exercise for using ifElseStatements
+
 import java.util.Scanner;
 
 public class ifStatementsExercise{
