@@ -3,9 +3,19 @@ import java.text.NumberFormat;
 public class MortgageReport {
 
     private MortgageCalculator calculator;
+    private final NumberFormat currency;
 
     public MortgageReport(MortgageCalculator calculator) {
         this.calculator = calculator;
+        currency = NumberFormat.getCurrencyInstance();
+    }
+
+    public void printMortgage() {
+        double mortgage = calculator.calculateMortgage();
+        String mortgageFormatted = currency.format(mortgage);
+        System.out.println("\nMORTGAGE");
+        System.out.println("----------");
+        System.out.println("Monthly Payments: " + mortgageFormatted);
     }
 
     public void printPaymentSchedule() {
@@ -13,16 +23,9 @@ public class MortgageReport {
         System.out.println("PAYMENT SCHEDULE");
         System.out.println("-----------------");
         for(double balance : calculator.getRemainingBalances())
-            System.out.println(NumberFormat.getCurrencyInstance().format(balance));
-        }
+            System.out.println(currency.format(balance));
     }
 
-    public void printMortgage() {
-        double mortgage = calculator.calculateMortgage();
-        String mortgageFormatted = NumberFormat.getCurrencyInstance().format(mortgage);
-        System.out.println("\nMORTGAGE");
-        System.out.println("----------");
-        System.out.println("Monthly Payments: " + mortgageFormatted);
-    }
 }
+
 

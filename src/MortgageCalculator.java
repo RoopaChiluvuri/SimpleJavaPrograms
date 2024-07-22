@@ -17,18 +17,18 @@ public class MortgageCalculator {
 
     public double calculateMortgage() {
         float monthlyInterest = getMonthlyInterest();
-        short numberOfPayments = (short) getNumberOfPayments();
+        float numberOfPayments = getNumberOfPayments();
 
-        double mortgage = (principal * ((monthlyInterest * pow(1 + monthlyInterest, numberOfPayments))
-                / (pow(1 + monthlyInterest, numberOfPayments) - 1)));
+        double mortgage = principal
+                * (monthlyInterest * pow(1 + monthlyInterest, numberOfPayments))
+                / (pow(1 + monthlyInterest, numberOfPayments) - 1);
 
         return mortgage;
     }
 
     public double calculateBalance(short numberOfPaymentsMade) {
-
         float monthlyInterest = getMonthlyInterest();
-        short numberOfPayments = (short) getNumberOfPayments();
+        float numberOfPayments = getNumberOfPayments();
 
         double balance = principal
                 * (pow(1 + monthlyInterest, numberOfPayments) - pow(1 + monthlyInterest, numberOfPaymentsMade))
