@@ -1,7 +1,5 @@
 // Mortgage Calculator
 
-import java.text.NumberFormat;
-
 import static java.lang.Math.pow;
 
 public class Main {
@@ -13,20 +11,8 @@ public class Main {
         float annualInterest = (float) Console.readNumber("Annual Interest Rate: ", 1, 30);
         byte years = (byte) Console.readNumber("Period (Years): ", 1, 30);
 
-        double mortgage = calculateMortgage(principal, annualInterest, years);
-
-        String mortgageFormatted = NumberFormat.getCurrencyInstance().format(mortgage);
-        System.out.println("\nMORTGAGE");
-        System.out.println("----------");
-        System.out.println("Monthly Payments: " + mortgageFormatted);
-
-        System.out.println();
-        System.out.println("PAYMENT SCHEDULE");
-        System.out.println("-----------------");
-        for (short month = 1; month <= years * MONTHS_IN_YEAR; month++){
-           double balance = calculateBalance(principal, annualInterest, years, month);
-           System.out.println(NumberFormat.getCurrencyInstance().format(balance));
-        }
+        MortgageReport.printMortgage(principal, annualInterest, years);
+        MortgageReport.printPaymentSchedule(principal, annualInterest, years);
     }
 
     public static double calculateMortgage(
